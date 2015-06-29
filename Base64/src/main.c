@@ -13,8 +13,15 @@ int main(void)
 	len = 0;
 
 	/* [TEST] encode */
-	encode_base64(src, 7, dst, &len);
-	printf("RESULT:%s (SIZE:%d)\n", dst, len);
+	len = encode_base64(src, 7, dst);
+	if (0 < len)
+	{
+		printf("RESULT:%s (SIZE:%d)\n", dst, len);
+	}
+	else
+	{
+		printf("FAILED: err code=%d\n", len);
+	}
 
 	return EXIT_SUCCESS;
 }

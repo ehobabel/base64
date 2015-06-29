@@ -35,7 +35,7 @@ Base64: $(OBJS) $(USER_OBJS)
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) Base64
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) Base64
 	-@echo ' '
 
 .PHONY: all clean dependents

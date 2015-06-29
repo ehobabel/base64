@@ -3,7 +3,7 @@
 
 static const char cnvTbl[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-int encode_base64(char *srcStr, int srcLen, char *dstStr, int *dstLen)
+int encode_base64(char *srcStr, int srcLen, char *dstStr)
 {
 	int remain;
 	int encLen;
@@ -11,7 +11,7 @@ int encode_base64(char *srcStr, int srcLen, char *dstStr, int *dstLen)
 	char tmp[4];
 
 	/* check params */
-	if ((NULL == srcStr) || (0 >= srcLen) || (NULL == dstStr) || (NULL == dstLen))
+	if ((NULL == srcStr) || (0 >= srcLen) || (NULL == dstStr))
 	{
 #ifdef __DEBUG__
 		printf("[ERR] param error.\n");
@@ -65,7 +65,6 @@ int encode_base64(char *srcStr, int srcLen, char *dstStr, int *dstLen)
 		i++;
 	}
 
-	*dstLen = encLen;
-
-	return 0;	/* SUCCESS */
+	/* SUCCESS */
+	return encLen;
 }
