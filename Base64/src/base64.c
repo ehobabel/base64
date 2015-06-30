@@ -3,7 +3,7 @@
 
 static const char cnvTbl[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-int encode_base64(char *srcStr, int srcLen, char *dstStr)
+int b64Encode(char *srcStr, int srcLen, char *dstStr)
 {
 	int remain;
 	int encLen;
