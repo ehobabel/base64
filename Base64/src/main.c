@@ -1,27 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "base64.h"
 
 int main(void)
 {
-	char dst[15];
+	char *dst;
 	char src[] = "ABCDEFG";
 	int len;
 
-	memset(dst, 0, 15);
-	len = 0;
+	len = b64GetEncodedSize(strlen(src));
+	printf("ENCODED SIZE=%d (byte)\n", len);
 
+	if (0 >= len)
+	{
+		printf("[ERR] invalid size\n");
+		return -1;
+	}
+	dst = malloc(len);
+	if (NULL == dst)
+	{
+		printf("[ERR] cannot allocate memory\n");
+		return -1;
+	}
 	/* [TEST] encode */
-	len = b64Encode(src, 7, dst);
+	len = b64Encode(src, strlen(src), dst);
 	if (0 < len)
 	{
 		printf("RESULT:%s (SIZE:%d)\n", dst, len);
 	}
 	else
 	{
-		printf("FAILED: err code=%d\n", len);
+		printf("[ERR] failed: (err code=%d)\n", len);
 	}
+
+	free(dst);
 
 	return EXIT_SUCCESS;
 }

@@ -3,6 +3,31 @@
 
 static const char cnvTbl[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
+int b64GetEncodedSize(int srcLen)
+{
+	int encLen;
+
+	/* check param */
+	if (0 >= srcLen)
+	{
+#ifdef __DEBUG__
+		printf("[ERR] param error.\n");
+#endif /* __DEBUG__ */
+		return -1;	/* FAIL */
+	}
+
+	/* initialize */
+	encLen = 0;
+
+	/* calculate */
+	encLen = ((srcLen * 8) + 5) / 6;
+	encLen = (encLen + 3) / 4;
+	encLen *= 4;
+
+	/* SUCCESS */
+	return encLen;
+}
+
 int b64Encode(char *srcStr, int srcLen, char *dstStr)
 {
 	int remain;
