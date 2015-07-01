@@ -18,12 +18,16 @@ int main(void)
 		printf("[ERR] invalid size\n");
 		return -1;
 	}
-	dst = malloc(len);
+
+	dst = malloc(len+1);
 	if (NULL == dst)
 	{
 		printf("[ERR] cannot allocate memory\n");
 		return -1;
 	}
+
+	memset(dst, 0, len+1);
+
 	/* [TEST] encode */
 	len = b64Encode(src, strlen(src), dst);
 	if (0 < len)
