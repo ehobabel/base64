@@ -28,11 +28,25 @@ int main(void)
 
 	memset(dst, 0, len+1);
 
-	/* [TEST] encode */
+	/* encode */
 	len = b64Encode(src, strlen(src), dst);
 	if (0 < len)
 	{
 		printf("RESULT:%s (SIZE:%d)\n", dst, len);
+	}
+	else
+	{
+		printf("[ERR] failed: (err code=%d)\n", len);
+	}
+
+	memset(src, 0, strlen(src));
+	printf("check: %s\n", src);
+
+	/* decode */
+	len = b64Decode(dst, len, src);
+	if (0 < len)
+	{
+		printf("RESULT:%s (SIZE:%d)\n", src, len);
 	}
 	else
 	{
